@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jigsaw Puzzle Game Instructions</title>
+    <style>
+   body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #e0e0e0;
+            background-color: #000000;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-image: 
+                radial-gradient(circle at 50% 50%, rgba(40, 40, 40, 0.8) 0%, rgba(0, 0, 0, 0.8) 100%),
+                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M30,10 Q50,0 70,10 L90,30 Q100,50 90,70 L70,90 Q50,100 30,90 L10,70 Q0,50 10,30 Z" fill="rgba(60, 60, 60, 0.3)" /></svg>');
+            background-size: cover, 100px 100px;
+            background-position: center, center;
+            background-repeat: no-repeat, repeat;
+            animation: backgroundShift 30s linear infinite;
+        }
+        @keyframes backgroundShift {
+            0% { background-position: center, 0 0; }
+            100% { background-position: center, 100px 100px; }
+        }
+        .container {
+            background-color: rgba(30, 30, 30, 0.9);
+            border-radius: 15px;
+            padding: 30px;
+            max-width: 800px;
+            width: 90%;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+        h1 {
+            color: #bb86fc;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        .instruction, .tip {
+            background-color: rgba(50, 50, 50, 0.7);
+            border-left: 5px solid #03dac6;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-radius: 0 10px 10px 0;
+            transition: transform 0.3s ease;
+        }
+        .instruction:hover, .tip:hover {
+            transform: translateX(5px);
+        }
+        .tip {
+            border-left-color: #cf6679;
+        }
+        h2 {
+            color: #03dac6;
+            margin-top: 0;
+        }
+        .tip h2 {
+            color: #cf6679;
+        }
+        ul, ol {
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        #understood {
+            margin-right: 10px;
+        }
+        button {
+            background-color: #13da8e;
+            color: #121212;
+            border: none;
+            padding: 12px 24px;
+            cursor: pointer;
+            font-size: 18px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.1s ease;
+            display: block;
+            margin: 0 auto;
+        }
+        button:hover {
+            background-color: #0ccaaa;
+            transform: scale(1.05);
+        }
+        button:active {
+            transform: scale(0.98);
+        }
+        button:disabled {
+            background-color: #d3a0a0;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>How to Play the Jigsaw Puzzle Game</h1>
+        
+        <div class="instruction">
+            <h2>Getting Started</h2>
+            <ol>
+                <li>When you open the game, you'll see a scrambled image divided into pieces.</li>
+                <li>Your goal is to reconstruct the original image by arranging the pieces correctly.</li>
+            </ol>
+        </div>
+        
+        <div class="instruction">
+            <h2>Playing the Game</h2>
+            <ol>
+                <li>Click and drag puzzle pieces to move them around the board.</li>
+                <li>Choose the correct option for the pop up question</li>
+                <li>Connect matching pieces by placing them next to each other.</li>
+                <li>Continue until all pieces are correctly placed and the image is complete.</li>
+            </ol>
+        </div>
+        
+        <div class="tip">
+            <h2>Tips for Success</h2>
+            <ul>
+                <li>Start with the edge pieces to create a frame.</li>
+                <li>Group similar colors or patterns together.</li>
+                <li>Pay attention to the shapes of the piece connectors.</li>
+                <li>Take breaks if you feel stuck – a fresh perspective can help!</li>
+            </ul>
+        </div>
+        
+        <div class="checkbox-container">
+            <input type="checkbox" id="understood">
+            <label for="understood">I have read and understood the instructions</label>
+        </div>
+        
+        <button id="startGame" disabled>Start Game</button>
+    </div>
+
+    <script>
+        const checkbox = document.getElementById('understood');
+        const startButton = document.getElementById('startGame');
+
+        checkbox.addEventListener('change', function() {
+            startButton.disabled = !this.checked;
+        });
+
+        startButton.addEventListener('click', function() {
+            alert('Starting the Jigsaw Puzzle Game! Get ready to solve the puzzle!');
+            // In a real game, this would redirect to the game page or start the game logic
+        });
+        
+        // Function to show a random tip
+        function showRandomTip() {
+            const tips = [
+                "Take your time and enjoy the process!",
+                "Try sorting pieces by color or pattern before starting.",
+                "If you're stuck, try focusing on a specific section of the image.",
+                "Remember, practice makes perfect. The more puzzles you solve, the better you'll become!"
+            ];
+            const randomTip = tips[Math.floor(Math.random() * tips.length)];
+            alert("Puzzle Tip: " + randomTip);
+        }
+
+        // Show a random tip every 30 seconds
+        setInterval(showRandomTip, 30000);
+    </script>
+</body>
+</html>
